@@ -37,13 +37,14 @@ namespace Freedeck_Launcher
 
                 bool needsUpdate = false;
                 needsUpdate = (version == selected);
-
                 if(!needsUpdate)
                 {
                     this.Close();
                 } else
                 {
+                    label1.Text = "Updating! (v" + version + " -> v" + selected + ")";
                     RunUpdater();
+                    this.Close();
                 }
             } catch(Exception er)
             {
@@ -54,8 +55,15 @@ namespace Freedeck_Launcher
         {
             using(Process proc = new Process())
             {
-                proc.StartInfo.WorkingDirectory = Path.GetDirectoryName(textBox1.Text);
-                proc.StartInfo
+                progressBar1.Value = 0;
+                proc.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+                proc.StartInfo.WorkingDirectory = textBox1.Text;
+                proc.StartInfo.FileName = "git";
+                proc.StartInfo.Arguments = " pull";
+                progressBar1.Value = 50;
+                proc.Start();
+                proc.WaitForExit();
+                progressBar1.Value = 100;
             }
         }
 

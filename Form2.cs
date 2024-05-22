@@ -179,6 +179,7 @@ namespace Freedeck_Launcher
         private void Form2_Load(object sender, EventArgs e)
         {
             string home = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            if(File.Exists(home +"\\Freedeck\\InstallationPath.handoff")) home = File.ReadAllText(home+"\\Freedeck\\InstallationPath.handoff");
             textBox2.Text = home+"\\Freedeck";
             onFinishedCheck();
             textBox3.Text = textBox2.Text + "\\freedeck\\node_modules\\electron\\dist\\electron.exe";

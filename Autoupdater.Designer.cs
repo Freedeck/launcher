@@ -132,7 +132,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.progressBar1);
             this.Name = "Autoupdater";
-            this.Text = "s";
+            this.Text = "Autoupdater";
             this.Load += new System.EventHandler(this.Autoupdater_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
