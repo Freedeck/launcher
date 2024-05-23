@@ -17,6 +17,7 @@ namespace Freedeck_Launcher
 {
     public partial class Form1 : Form
     {
+        private static string lVersion = "1.1.0";
         public Form1()
         {
             InitializeComponent();
@@ -25,6 +26,14 @@ namespace Freedeck_Launcher
         private static string installPath = home + "\\Freedeck";
         private static string imgPath = installPath + "\\freedeck\\assets\\taskbar.png";
         private static Image img = Image.FromFile(imgPath);
+        private void GetAndSetVersionData()
+        {
+            string uver = File.ReadAllText(installPath + "\\freedeck\\package.json");
+            string version = uver.Split(new string[] { "\"version\": \"" }, StringSplitOptions.None)[1].Split('"')[0];
+            
+            label3.Text = "v" + version;
+            label4.Text = "Launcher v" + lVersion;
+        }
         private void reloadPaths()
         {
             installPath = textBox1.Text;
@@ -36,6 +45,7 @@ namespace Freedeck_Launcher
                 imgPath = installPath + "\\freedeck\\assets\\bg.jpg";
             }
             img = Image.FromFile(imgPath);
+            GetAndSetVersionData();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -49,6 +59,8 @@ namespace Freedeck_Launcher
             label2.BackColor = Color.Transparent;
             checkBox1.BackColor = Color.Transparent;
             checkBox2.BackColor = Color.Transparent;
+            label3.BackColor = Color.Transparent;
+            label4.BackColor = Color.Transparent;
         }
 
         private void button2_Click(object sender, EventArgs e)
