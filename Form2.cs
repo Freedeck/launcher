@@ -175,14 +175,17 @@ namespace Freedeck_Launcher
                 richTextBox1.AppendText(e.Data ?? "\n");
             }));
         }
-
+        static string home = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+        private static string imgPath = home + "\\Freedeck\\freedeck\\assets\\taskbar.png";
+        private static Image img = Image.FromFile(imgPath);
         private void Form2_Load(object sender, EventArgs e)
         {
-            string home = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             if(File.Exists(home +"\\Freedeck\\InstallationPath.handoff")) home = File.ReadAllText(home+"\\Freedeck\\InstallationPath.handoff");
             textBox2.Text = home+"\\Freedeck";
             onFinishedCheck();
             textBox3.Text = textBox2.Text + "\\freedeck\\node_modules\\electron\\dist\\electron.exe";
+            this.BackgroundImage = img;
+            this.BackgroundImageLayout = ImageLayout.Zoom;
         }
 
         private void checkBox6_CheckedChanged(object sender, EventArgs e)
