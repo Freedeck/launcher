@@ -17,7 +17,7 @@ namespace Freedeck_Launcher
 {
     public partial class Form1 : Form
     {
-        private static string lVersion = "1.1.0";
+        private static string lVersion = "1.2.0";
         public Form1()
         {
             InitializeComponent();
@@ -114,7 +114,7 @@ namespace Freedeck_Launcher
             else proc.Exited += new EventHandler(Proc_nodeexit);    
             this.Invoke(new MethodInvoker(delegate
                 {
-                    waiting.Close();
+                    if(!waiting.IsDisposed) waiting.Close();
                 }));
         }
 
