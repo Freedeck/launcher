@@ -80,7 +80,6 @@ namespace Freedeck_Launcher
         {
 
         }
-        Waiting waiting = new Waiting();
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -89,7 +88,6 @@ namespace Freedeck_Launcher
                 Autoupdater autoupdater = new Autoupdater();
                 autoupdater.ShowDialog();
             }
-            waiting.Show();
             startProgram("--server-only");
             startProgram("--companion-only", true);
             this.Hide();
@@ -112,10 +110,6 @@ namespace Freedeck_Launcher
                 proc.EnableRaisingEvents = true;
             if (useElectron) proc.Exited += new EventHandler(Proc_Exited);
             else proc.Exited += new EventHandler(Proc_nodeexit);    
-            this.Invoke(new MethodInvoker(delegate
-                {
-                    if(!waiting.IsDisposed) waiting.Close();
-                }));
         }
 
         private void Proc_nodeexit(object sender, EventArgs e)
