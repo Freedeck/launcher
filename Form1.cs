@@ -17,7 +17,7 @@ namespace Freedeck_Launcher
 {
     public partial class Form1 : Form
     {
-        private static string lVersion = "1.2.0";
+        private static string lVersion = "1.3.0";
         public Form1()
         {
             InitializeComponent();
