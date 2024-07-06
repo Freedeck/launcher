@@ -24,8 +24,6 @@ namespace Freedeck_Launcher
         }
         private static string home = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
         private static string installPath = home + "\\Freedeck";
-        private static string imgPath = installPath + "\\freedeck\\assets\\taskbar.png";
-        private static Image img = Image.FromFile(imgPath);
         private void GetAndSetVersionData()
         {
             string uver = File.ReadAllText(installPath + "\\freedeck\\package.json");
@@ -37,14 +35,6 @@ namespace Freedeck_Launcher
         private void reloadPaths()
         {
             installPath = textBox1.Text;
-            if(!File.Exists(installPath +"\\freedeck\\assets\\bg.jpg"))
-            {
-                imgPath = installPath + "\\freedeck\\assets\\taskbar.png";
-            } else
-            {
-                imgPath = installPath + "\\freedeck\\assets\\bg.jpg";
-            }
-            img = Image.FromFile(imgPath);
             GetAndSetVersionData();
         }
 
@@ -52,9 +42,7 @@ namespace Freedeck_Launcher
         {
             if (File.Exists(home + "\\Freedeck\\InstallationPath.handoff")) installPath = File.ReadAllText(home+"\\Freedeck\\InstallationPath.handoff");
             textBox1.Text = installPath;
-            this.BackgroundImage = img;
             reloadPaths();
-            this.BackgroundImageLayout = ImageLayout.Tile;
             label1.BackColor = Color.Transparent;
             label2.BackColor = Color.Transparent;
             checkBox1.BackColor = Color.Transparent;

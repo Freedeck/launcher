@@ -132,6 +132,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = global::Freedeck_Launcher.Properties.Resources.bg;
             this.ClientSize = new System.Drawing.Size(348, 101);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
