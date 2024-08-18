@@ -213,18 +213,18 @@ namespace Freedeck_Launcher
                         running = false;
                         checkBox5.Checked = running;
                     }));
+                    this.Invoke(new MethodInvoker(delegate
+                    {
+                        button1.Text = "Start Freedeck";
+                        this.Show();
+                        this.BringToFront();
+                        this.Focus();
+                    }));
                 }
             } catch(Exception ex)
             {
                 Console.WriteLine(ex.ToString());
             }
-            this.Invoke(new MethodInvoker(delegate
-            {
-                button1.Text = "Start Freedeck";
-                this.Show();
-                this.BringToFront();
-                this.Focus();
-            }));
         }
 
         private void Proc_Exited(object sender, EventArgs e)
@@ -245,6 +245,7 @@ namespace Freedeck_Launcher
             this.Invoke(new MethodInvoker(delegate
             {
                 button1.Text = "Server stopped";
+                running = false;
                 this.Show();
                 this.BringToFront();
                 this.Focus();
