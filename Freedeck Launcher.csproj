@@ -154,7 +154,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="logo_big.ico" />
-    <None Include="Resources\bg.jpg" />
+    <None Include="Resources\FDAP1.png" />
+    <None Include="Resources\FDAP.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.8">
@@ -168,5 +169,6 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

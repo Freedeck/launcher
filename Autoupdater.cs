@@ -24,6 +24,12 @@ namespace Freedeck_Launcher
         {
             try
             {
+                if(!Directory.Exists(textBox1.Text + "\\src\\configs"))
+                {
+                    // this is first time boot
+                    this.Close();
+                    return;
+                }
                 byte[] dl =wc.DownloadData(new Uri(textBox2.Text));
                 string[] file = Encoding.Default.GetString(dl).Split('\n');
                 string ucfg = File.ReadAllText(textBox1.Text + "\\src\\configs\\config.fd.js");
@@ -34,11 +40,11 @@ namespace Freedeck_Launcher
                 }
                 string uver = File.ReadAllText(textBox1.Text + "\\package.json");
                 string version = uver.Split(new string[] { "\"version\": \"" }, StringSplitOptions.None)[1].Split('"')[0];
-
                 bool needsUpdate = false;
-                needsUpdate = (version == selected);
+                needsUpdate = (version != selected);
                 if(!needsUpdate)
                 {
+                    MessageBox.Show("No update");
                     this.Close();
                 } else
                 {
@@ -51,20 +57,25 @@ namespace Freedeck_Launcher
                 MessageBox.Show(er.ToString());
             }
         }
-        private void RunUpdater()
+        private void runProcess(String file, String args)
         {
-            using(Process proc = new Process())
+            using (Process proc = new Process())
             {
                 progressBar1.Value = 0;
                 proc.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
                 proc.StartInfo.WorkingDirectory = textBox1.Text;
-                proc.StartInfo.FileName = "git";
-                proc.StartInfo.Arguments = " pull";
-                progressBar1.Value = 50;
+                proc.StartInfo.FileName = file;
+                proc.StartInfo.Arguments = " " + args;
                 proc.Start();
                 proc.WaitForExit();
-                progressBar1.Value = 100;
             }
+        }
+        private void RunUpdater()
+        {
+            runProcess("C:\\Program Files\\Git\\bin\\git.exe", "pull");
+            String dateFormatted = DateTime.Now.ToString("yyyy-MM-dd");
+            runProcess("C:\\Program Files\\Git\\bin\\git.exe", "branch " + dateFormatted);
+            runProcess("C:\\Program Files\\Git\\bin\\git.exe", "reset --hard origin");
         }
 
         private void Autoupdater_Load(object sender, EventArgs e)
