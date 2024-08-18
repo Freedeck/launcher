@@ -50,7 +50,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>logo_big.ico</ApplicationIcon>
+    <ApplicationIcon>FDAP.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestCertificateThumbprint>89E270D2A693E829C66DB03EB9434B27FC11B198</ManifestCertificateThumbprint>
@@ -153,6 +153,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="FDAP.ico" />
     <Content Include="logo_big.ico" />
     <None Include="Resources\FDAP1.png" />
     <None Include="Resources\FDAP.png" />
