@@ -182,6 +182,7 @@ namespace Freedeck_Launcher
             this.checkBox3.TabIndex = 14;
             this.checkBox3.Text = "Electron";
             this.checkBox3.UseVisualStyleBackColor = true;
+            this.checkBox3.Visible = false;
             // 
             // checkBox4
             // 
@@ -192,6 +193,7 @@ namespace Freedeck_Launcher
             this.checkBox4.TabIndex = 15;
             this.checkBox4.Text = "Node Server";
             this.checkBox4.UseVisualStyleBackColor = true;
+            this.checkBox4.Visible = false;
             // 
             // label5
             // 
@@ -201,6 +203,7 @@ namespace Freedeck_Launcher
             this.label5.Size = new System.Drawing.Size(59, 13);
             this.label5.TabIndex = 16;
             this.label5.Text = "App Status";
+            this.label5.Visible = false;
             // 
             // checkBox5
             // 
@@ -211,6 +214,7 @@ namespace Freedeck_Launcher
             this.checkBox5.TabIndex = 17;
             this.checkBox5.Text = "\'running\' variable";
             this.checkBox5.UseVisualStyleBackColor = true;
+            this.checkBox5.Visible = false;
             // 
             // Form1
             // 

@@ -33,7 +33,7 @@ namespace Freedeck_Launcher
             if (electronWindow != IntPtr.Zero)
             {
                 running = true;
-                checkBox4.Checked = running;
+                checkBox5.Checked = running;
                 button1.Text = "Stop Freedeck";
                 this.ShowInTaskbar = true;
             }
@@ -121,7 +121,7 @@ namespace Freedeck_Launcher
             {
                 running = false;
                 button1.Enabled = false;
-                checkBox4.Checked = running;
+                checkBox5.Checked = running;
 
                 button1.Text = "Stopping Freedeck...";
                 if (!node.HasExited)
@@ -150,7 +150,7 @@ namespace Freedeck_Launcher
             button1.Text = "Stop Freedeck";
             button1.Enabled = true;
             running = true;
-            checkBox4.Checked = running;
+            checkBox5.Checked = running;
 
             this.Hide();
 
@@ -199,11 +199,21 @@ namespace Freedeck_Launcher
         {
             try
             {
-                if(File.Exists(installPath + "\\freedeck\\src\\configs\\config.fd.js"))
-                electron.Kill();
-                checkBox3.Checked = false;
-                running = false;
-                checkBox4.Checked = running;
+                if (File.Exists(installPath + "\\freedeck\\src\\configs\\config.fd.js"))
+                {
+                    try
+                    {
+                        electron.Kill();
+                    } catch(Exception errr)
+                    {
+                        Console.WriteLine(errr.ToString());
+                    }
+                    this.Invoke(new MethodInvoker(delegate {
+                        checkBox3.Checked = false;
+                        running = false;
+                        checkBox5.Checked = running;
+                    }));
+                }
             } catch(Exception ex)
             {
                 Console.WriteLine(ex.ToString());
@@ -221,13 +231,24 @@ namespace Freedeck_Launcher
         {
             try
             {
-                checkBox4.Checked = false;
                 node.Kill();
+                this.Invoke(new MethodInvoker(delegate
+                {
+                    checkBox4.Checked = false;
+                }));
+                running = false;
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.ToString());
             }
+            this.Invoke(new MethodInvoker(delegate
+            {
+                button1.Text = "Server stopped";
+                this.Show();
+                this.BringToFront();
+                this.Focus();
+            }));
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
