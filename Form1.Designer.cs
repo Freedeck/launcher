@@ -34,7 +34,6 @@ namespace Freedeck_Launcher
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -47,6 +46,7 @@ namespace Freedeck_Launcher
             this.checkBox4 = new System.Windows.Forms.CheckBox();
             this.label5 = new System.Windows.Forms.Label();
             this.checkBox5 = new System.Windows.Forms.CheckBox();
+            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -75,19 +75,6 @@ namespace Freedeck_Launcher
             this.button1.Text = "Start Freedeck";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // button2
-            // 
-            this.button2.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlText;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.ForeColor = System.Drawing.SystemColors.Control;
-            this.button2.Location = new System.Drawing.Point(370, 176);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(70, 24);
-            this.button2.TabIndex = 4;
-            this.button2.Text = "Advanced";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // checkBox1
             // 
@@ -156,7 +143,7 @@ namespace Freedeck_Launcher
             // 
             this.progressBar1.Location = new System.Drawing.Point(12, 176);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(352, 23);
+            this.progressBar1.Size = new System.Drawing.Size(425, 23);
             this.progressBar1.TabIndex = 12;
             this.progressBar1.Click += new System.EventHandler(this.progressBar1_Click);
             // 
@@ -216,12 +203,25 @@ namespace Freedeck_Launcher
             this.checkBox5.UseVisualStyleBackColor = true;
             this.checkBox5.Visible = false;
             // 
+            // button2
+            // 
+            this.button2.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlText;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.ForeColor = System.Drawing.SystemColors.Control;
+            this.button2.Location = new System.Drawing.Point(449, 142);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(70, 24);
+            this.button2.TabIndex = 4;
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Visible = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(50)))));
-            this.ClientSize = new System.Drawing.Size(448, 206);
+            this.ClientSize = new System.Drawing.Size(449, 206);
             this.Controls.Add(this.checkBox5);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.checkBox4);
@@ -250,7 +250,6 @@ namespace Freedeck_Launcher
         #endregion
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.CheckBox checkBox2;
         private System.Windows.Forms.TextBox textBox1;
@@ -263,6 +262,7 @@ namespace Freedeck_Launcher
         private System.Windows.Forms.CheckBox checkBox4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.CheckBox checkBox5;
+        private System.Windows.Forms.Button button2;
     }
 }
 
