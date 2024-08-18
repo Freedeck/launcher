@@ -33,6 +33,7 @@ namespace Freedeck_Launcher
             if (electronWindow != IntPtr.Zero)
             {
                 running = true;
+                checkBox4.Checked = running;
                 button1.Text = "Stop Freedeck";
                 this.ShowInTaskbar = true;
             }
@@ -120,6 +121,8 @@ namespace Freedeck_Launcher
             {
                 running = false;
                 button1.Enabled = false;
+                checkBox4.Checked = running;
+
                 button1.Text = "Stopping Freedeck...";
                 if (!node.HasExited)
                     node.Kill();
@@ -147,6 +150,8 @@ namespace Freedeck_Launcher
             button1.Text = "Stop Freedeck";
             button1.Enabled = true;
             running = true;
+            checkBox4.Checked = running;
+
             this.Hide();
 
         }
@@ -161,12 +166,17 @@ namespace Freedeck_Launcher
         private void startProgram(string args, bool useElectron = false)
         {
             Process proc = new Process();
-            
-            if (useElectron) 
+
+            if (useElectron)
+            {
                 electron = proc;
-            else 
+                checkBox3.Checked = true;
+            }
+            else
+            {
                 node = proc;
-            
+                checkBox4.Checked = true;
+            }
             proc.StartInfo.WindowStyle = checkBox1.Checked || useElectron ? ProcessWindowStyle.Normal : ProcessWindowStyle.Hidden;
             proc.StartInfo.Arguments = " src\\index.js " + args;
             proc.StartInfo.WorkingDirectory = installPath + "\\freedeck";
@@ -189,8 +199,11 @@ namespace Freedeck_Launcher
         {
             try
             {
+                if(File.Exists(installPath + "\\freedeck\\src\\configs\\config.fd.js"))
                 electron.Kill();
+                checkBox3.Checked = false;
                 running = false;
+                checkBox4.Checked = running;
             } catch(Exception ex)
             {
                 Console.WriteLine(ex.ToString());
@@ -208,6 +221,7 @@ namespace Freedeck_Launcher
         {
             try
             {
+                checkBox4.Checked = false;
                 node.Kill();
             }
             catch (Exception ex)
