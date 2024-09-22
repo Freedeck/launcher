@@ -20,6 +20,7 @@ namespace Freedeck_Launcher
             InitializeComponent();
         }
         WebClient wc;
+        int state = 0;
         private void Retry()
         {
             try
@@ -34,9 +35,11 @@ namespace Freedeck_Launcher
                 string[] file = Encoding.Default.GetString(dl).Split('\n');
                 string ucfg = File.ReadAllText(textBox1.Text + "\\src\\configs\\config.fd.js");
                 string selected = file[0];
+                state = 0;
                 if (ucfg.Contains("release:\"dev\""))
                 {
                     selected = file[1];
+                    state = 1;
                 }
                 string uver = File.ReadAllText(textBox1.Text + "\\package.json");
                 string version = uver.Split(new string[] { "\"version\": \"" }, StringSplitOptions.None)[1].Split('"')[0];
@@ -49,6 +52,27 @@ namespace Freedeck_Launcher
                 } else
                 {
                     label1.Text = "Updating! (v" + version + " -> v" + selected + ")";
+                    if(selected.Contains("ob7") && version.Contains("ob6"))
+                    {
+                        Console.WriteLine("Migrating files to OB7 structure");
+                        var dir = textBox1.Text;
+
+                        if(!Directory.Exists(dir +"\\user-data"))
+                        {
+                            Directory.CreateDirectory(dir + "\\user-data");
+                        }
+
+                        if(Directory.Exists(dir +"\\src\\public\\sounds"))
+                        {
+                            Directory.Move(dir + "\\src\\public\\sounds", dir + "\\user-data\\sounds");
+                        }
+
+                        if(Directory.Exists(dir +"\\src\\public\\us-icons"))
+                        {
+                            Directory.Move(dir + "\\src\\public\\us-icons", dir + "\\user-data\\icons");
+                        }
+                        Console.WriteLine("Migration complete");
+                    }
                     RunUpdater();
                     this.Close();
                 }
@@ -72,10 +96,9 @@ namespace Freedeck_Launcher
         }
         private void RunUpdater()
         {
-            runProcess("C:\\Program Files\\Git\\bin\\git.exe", "pull");
-            String dateFormatted = DateTime.Now.ToString("yyyy-MM-dd");
-            runProcess("C:\\Program Files\\Git\\bin\\git.exe", "branch " + dateFormatted);
-            runProcess("C:\\Program Files\\Git\\bin\\git.exe", "reset --hard origin");
+            String wantedBranch = "v6";
+            if (state == 1) wantedBranch = "v6-dev";
+            runProcess("C:\\Program Files\\Git\\bin\\git.exe", "checkout -f " + wantedBranch);
             runProcess("C:\\Program Files\\Git\\bin\\git.exe", "pull");
             runProcess("C:\\Program Files\\nodejs\\npm", "i");
         }
