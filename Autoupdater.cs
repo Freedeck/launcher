@@ -76,6 +76,8 @@ namespace Freedeck_Launcher
             String dateFormatted = DateTime.Now.ToString("yyyy-MM-dd");
             runProcess("C:\\Program Files\\Git\\bin\\git.exe", "branch " + dateFormatted);
             runProcess("C:\\Program Files\\Git\\bin\\git.exe", "reset --hard origin");
+            runProcess("C:\\Program Files\\Git\\bin\\git.exe", "pull");
+            runProcess("C:\\Program Files\\nodejs\\npm", "i");
         }
 
         private void Autoupdater_Load(object sender, EventArgs e)
