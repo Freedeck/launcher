@@ -47,7 +47,6 @@ namespace Freedeck_Launcher
                 needsUpdate = (version != selected);
                 if(!needsUpdate)
                 {
-                    MessageBox.Show("No update");
                     this.Close();
                 } else
                 {
